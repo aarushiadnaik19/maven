@@ -1,0 +1,14 @@
+package com.cg.emp;
+
+import org.hibernate.Session;
+
+import com.cg.emp.persistance.HibernateUtil;
+
+public class UseEmployeeHQL {
+
+	public static void main(String[] args) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+	}
+
+}

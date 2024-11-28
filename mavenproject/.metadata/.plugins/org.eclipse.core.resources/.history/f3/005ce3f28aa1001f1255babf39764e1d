@@ -1,0 +1,86 @@
+package com.cg.emp;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+public class EmployeeDAO {
+
+    private EntityManager em;
+
+   
+    public EmployeeDAO(EntityManager em) {
+        this.em = em;
+    }
+
+  
+    public void createEmployee(Employee emp) {
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            em.persist(emp); // Save the Employee object into the database
+            transaction.commit();
+            System.out.println("Employee has been created with ID " + emp.getId() );
+        } catch (RuntimeException e) {
+            if (transaction.isActive()) {
+                transaction.rollback(); 
+            }
+            else {
+            throw e; 
+        }
+    }}
+
+    // Method to find an Employee by ID
+    public void findEmployeeById(int id) {
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Employee emp = em.find(Employee.class, id); 
+            transaction.commit();
+            if (emp != null) {
+                System.out.println("Employee found: " + emp);
+            } else {
+                System.out.println("Employee with ID " + id + " not found.");
+            }
+        } catch (RuntimeException e) {
+            if (transaction.isActive()) {
+                transaction.rollback(); 
+            }
+            else {
+           throw e;
+        }}
+    }
+
+   
+    public void updateEmployee(Employee emp) {
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            em.merge(emp); 
+            System.out.println("Employee with ID  has been updated.");
+            transaction.commit();
+        } catch (RuntimeException e) {
+            if (transaction.isActive()) {
+                transaction.rollback(); 
+            }
+            else {
+            throw e;
+        }}
+    }
+
+    
+//    public void deleteEmployee(Employee emp) {
+//        EntityTransaction transaction = em.getTransaction();
+//        try {
+//            transaction.begin();
+//            em.remove(em.contains(emp) ? emp : em.merge(emp)); 
+//            System.out.println("Employee with ID has been deleted.");
+//            transaction.commit();
+//        } catch (RuntimeException e) {
+//            if (transaction.isActive()) {
+//                transaction.rollback(); // Rollback if there is an error
+//            }
+//            System.out.println("Error deleting employee: " + e);
+//        }
+//    }
+
+}

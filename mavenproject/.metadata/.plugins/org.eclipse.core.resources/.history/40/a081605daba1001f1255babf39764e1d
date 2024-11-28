@@ -1,0 +1,71 @@
+package com.cg.emp;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+public class UseEmployee {
+    public static void main(String[] args) {
+        // Step 1: Create EntityManagerFactory and EntityManager
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAUnit"); // Ensure this is your correct persistence unit name
+        EntityManager em = emf.createEntityManager();
+
+        // Step 2: Create Department and Employee objects
+        Department d = new Department("HR");
+        Set<Employee> employees = new HashSet<>();
+        
+        Employee emp = new Employee("Anannya", "Adnaik", 79700);
+        Employee emp1 = new Employee("Aarushi", "Adnaik", 96000);
+        Employee emp2 = new Employee("Geeta", "Adnaik", 89900);
+        
+        // Step 3: Set the department for each employee
+        emp.setDepartment(d);
+        emp1.setDepartment(d);
+        emp2.setDepartment(d);
+        
+        // Step 4: Add employees to the department
+        employees.add(emp);
+        employees.add(emp1);
+        employees.add(emp2);
+        
+        // Step 5: Create DepartmentDAO instance
+        DepartmentDAO dptDAO = new DepartmentDAO(em);
+        
+        // Step 6: Create department with employees using createDepartmentWithEmployee method
+        dptDAO.createDepartmentWithEmployee(d, employees);
+        
+        // Step 7: Find the department by its ID (for demonstration)
+        dptDAO.findDepartment(1);
+        
+        // Step 8: Now let's update the department using the updateDepartment method
+        // Create a new Department object with updated name
+        Department updatedDepartment = new Department(1L, "Sales");
+        
+        // Step 9: Update the department with ID 1
+        dptDAO.updateDepartment(1L, updatedDepartment); // This is where the update is triggered
+        
+        // Step 10: Close the EntityManager and EntityManagerFactory
+        em.close();
+        emf.close();
+    }
+
+}	
+	
+//	EmployeeDAO dao=new EmployeeDAO(em);
+//	DepartmentDAO  dao1=new DepartmentDAO 
+//	Employee e=new Employee("aarushi","adnaik",90000);
+//	Employee e1=new Employee(16,"sarthak","naik",78970);
+////	dao.createEmployee(e);
+////	dao.createEmployee(e1);
+////	dao.findEmployeeById(13);
+////	dao.updateEmployee(e1);
+//	dao.deleteEmployee(15);
+//	
+

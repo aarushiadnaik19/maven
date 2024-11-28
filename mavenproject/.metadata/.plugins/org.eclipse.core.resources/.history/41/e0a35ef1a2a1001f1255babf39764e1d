@@ -1,0 +1,30 @@
+package com.cg.emp;
+
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+public class DepartmentDAO {
+	EntityManager em;
+public DepartmentDAO(EntityManager em2) {
+		// TODO Auto-generated constructor stub
+	}
+public void createDepartmentWithEmployee(Department department, Set<Employee> employees){
+	 EntityTransaction transaction = em.getTransaction();
+     try {
+         transaction.begin();
+         department.setEmployees(employees);
+         em.persist(department); // Save the Employee object into the database
+         transaction.commit();
+         System.out.println("Employees in dept is created ");
+     } catch (RuntimeException e) {
+         if (transaction.isActive()) {
+             transaction.rollback(); 
+         }
+         else {
+         throw e; 
+     }
+ }
+}
+}

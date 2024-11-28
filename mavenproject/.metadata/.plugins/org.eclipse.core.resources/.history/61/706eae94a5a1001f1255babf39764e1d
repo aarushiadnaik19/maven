@@ -1,0 +1,68 @@
+package com.cg.emp;
+
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+public class DepartmentDAO {
+	EntityManager em;
+
+	public DepartmentDAO(EntityManager em) {
+		super();
+		this.em=em;
+	}
+	
+	
+public void createDepartmentWithEmployee(Department department, Set<Employee> employees){
+	 EntityTransaction transaction = em.getTransaction();
+     try {
+         transaction.begin();
+         department.setEmployees(employees);
+         em.persist(department); // Save the Employee object into the database
+         transaction.commit();
+         System.out.println("Employees in dept is created ");
+     } catch (RuntimeException e) {
+         if (transaction.isActive()) {
+             transaction.rollback(); 
+         }
+         else {
+         throw e; 
+     }
+ }
+}
+
+public void findDepartment(long id){
+	 EntityTransaction transaction = em.getTransaction();
+     try {
+         transaction.begin();
+         Department record =em.find(Department.class, id); // Save the Employee object into the database
+         transaction.commit();
+         System.out.println("employee with id in dept given." + record.getDeptname());
+         System.out.println(record.getEmployees());
+     } catch (RuntimeException e) {
+         if (transaction.isActive()) {
+             transaction.rollback(); 
+         }
+         else {
+         throw e; 
+     }
+ }
+}
+public void updateDepartment(Department department,Set<Employee> employees) {
+	EntityTransaction transaction = em.getTransaction();
+    try {
+        transaction.begin();
+        em.merge(department);
+        transaction.commit();
+        System.out.println("employee with id in dept given." + department);
+    } catch (RuntimeException e) {
+        if (transaction.isActive()) {
+            transaction.rollback(); 
+        }
+        else {
+        throw e; 
+    }
+}
+}
+}

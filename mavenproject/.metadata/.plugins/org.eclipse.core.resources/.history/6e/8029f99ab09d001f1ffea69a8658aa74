@@ -1,0 +1,17 @@
+package com.cg;
+
+public class UseUsers {
+	
+	private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "root";
+    
+public void readAll() {
+		
+	}
+	
+public static void main(String[] args) {
+
+	
+}
+}

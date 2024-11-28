@@ -1,0 +1,49 @@
+package com.cg.emp;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+public class EmployeeDAO {
+
+	EntityManager em;
+	public EmployeeDAO(EntityManager em) {
+	this.em=em;
+	}
+	public void createEmployee(Employee emp) {
+		EntityTransaction transaction=em.getTransaction();
+		try {
+		transaction.begin();
+		em.persist(emp);
+		System.out.println("employee has been created with this id.");
+		transaction.commit();
+		}
+		catch(RuntimeException e) {
+		if(transaction.isActive()) {
+			transaction.rollback();
+		}
+		else {
+			throw e;
+		}
+		}
+		
+	}
+	
+	public void findEmployeeById(int id) {
+		EntityTransaction transaction=em.getTransaction();
+		try {
+		transaction.begin();
+		Employee str=em.find(Employee.class, id);
+		System.out.println("employee has been created with this id.");
+		System.out.println(str);
+		transaction.commit();
+		}
+		catch(RuntimeException e) {
+		if(transaction.isActive()) {
+			transaction.rollback();
+		}
+		else {
+			throw e;
+		}
+		}
+	}
+}

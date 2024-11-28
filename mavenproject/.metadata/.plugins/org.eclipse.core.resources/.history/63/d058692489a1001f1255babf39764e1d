@@ -1,0 +1,16 @@
+package com.cg.emp;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class UseEmployee{
+public static void main(String[] args) {
+	EntityManagerFactory emf= Persistence.createEntityManagerFactory("JPAUnit");
+	EntityManager em=emf.createEntityManager();
+	EmployeeDAO dao=new EmployeeDAO(em);
+	Employee e=new Employee("aarushi","adnaik",90000);
+	dao.createEmployee(e);
+	dao.findEmployeeById(1);
+}
+}

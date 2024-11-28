@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.cg.Calculation&apos; to &apos;Calculator&apos;&#x0D;&#x0A;- Original project: &apos;testmaven&apos;&#x0D;&#x0A;- Original element: &apos;com.cg.Calculation&apos;&#x0D;&#x0A;- Renamed element: &apos;com.cg.Calculator&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Calculation&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.cg{Calculation.java[Calculation" matchStrategy="1" name="Calculator" qualified="false" references="true" similarDeclarations="false" stamp="1730783857948" textual="false" version="1.0"/>
+</session>

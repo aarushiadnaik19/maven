@@ -1,0 +1,34 @@
+package com.cg;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class UseUsers {
+	
+	private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "root";
+    
+public void readAll() throws SQLException {
+	String str= "select * from users";	
+	Connection conn=DriverManager.getConnection(URL, USER, PASSWORD);
+	System.out.println(conn+" connection lost");
+	Statement stmt= conn.createStatement();
+	stmt.executeQuery(str);
+	ResultSet rs=stmt.executeQuery(str);
+	System.out.println(rs);
+	while(rs.next()) {
+	
+	System.out.println(rs.getInt("id"));
+	}
+	}
+
+public static void main(String[] args) throws SQLException {
+UseUsers r=new UseUsers();
+r.readAll();
+	
+}
+}

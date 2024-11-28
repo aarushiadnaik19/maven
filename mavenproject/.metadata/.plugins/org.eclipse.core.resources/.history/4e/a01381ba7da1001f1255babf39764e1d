@@ -1,0 +1,11 @@
+package com.cg.emp;
+
+import javax.persistence.EntityManager;
+
+public class EmployeeDAO {
+
+	public EmployeeDAO(EntityManager em) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

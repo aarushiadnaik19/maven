@@ -1,0 +1,46 @@
+package com.cg.emp;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class UseCriteriaQuery {
+
+	public static void main(String[] args) {
+		 EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAUnit"); 
+	        EntityManager em = emf.createEntityManager();
+	        
+		EmployeeCriteriaQuery ecq=new EmployeeCriteriaQuery(em);
+		List<Employee> rec=ecq.listAllEmployeesUsingCriteriaQuery();
+		
+		for(Employee emp1:rec) {
+		System.out.println(emp1);
+		}
+		List<Employee> rec1=ecq.findEmployeeByName("aarushi");
+		
+		for(Employee emp2:rec1) {
+		System.out.println(emp2);
+		}
+		List<Employee> rec2=ecq.findEmployeeForGTSalary("78000");
+		
+		for(Employee emp3:rec2) {
+		System.out.println(emp3);
+		}
+		
+		List<Employee> rec3=ecq.findEmployeeForLTSalary("80000");
+		
+		for(Employee emp4:rec3) {
+		System.out.println(emp4);
+		}
+		
+		List<Employee> rec4=ecq.findEmployeesByNameStartsWith("sarthak");
+		
+		for(Employee emp5:rec4) {
+		System.out.println(emp5);
+		}
+	}
+	
+
+}

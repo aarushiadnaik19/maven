@@ -1,0 +1,60 @@
+package com.cg.entity;
+
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="employee_joint")
+//@DiscriminatorValue(value="emp_type")
+public class Employee extends Person{
+	@Column(name="salary",columnDefinition="DECIMAL(7,2)")
+	private Double salary;
+
+	@Column(name="dept_name",length=30)
+	private String deptName;
+	@Column(name="bonus",precision=6,scale=3)
+	private BigDecimal bonus;
+	@Column(name="email",length=30,unique=true)
+	private String email;
+	public Employee(Double salary, String deptName, BigDecimal bonus, String email) {
+		super();
+		this.salary = salary;
+		this.deptName = deptName;
+		this.bonus = bonus;
+		this.email = email;
+	}
+	public Employee() {
+		// TODO Auto-generated constructor stub
+	}
+	public Double getSalary() {
+		return salary;
+	}
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+	public String getDeptName() {
+		return deptName;
+	}
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setBonus(BigDecimal bonus) {
+		this.bonus = bonus;
+	}
+	public BigDecimal getBonus() {
+		return bonus;
+	}
+	@Override
+	public String toString() {
+		return "Employee [salary=" + salary + ", deptName=" + deptName + ", bonus=" + bonus + ", email=" + email + "]";
+	}}

@@ -1,0 +1,10 @@
+package com.cg.client;
+
+public class SaveClientData {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

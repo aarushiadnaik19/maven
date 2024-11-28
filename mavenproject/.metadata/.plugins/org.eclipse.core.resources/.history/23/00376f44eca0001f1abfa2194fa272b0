@@ -1,0 +1,68 @@
+package com.cg.emp;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.cg.emp.persistance.HibernateUtil;
+
+import java.util.List;
+
+public class UseEmployeeHQL {
+
+    public static void main(String[] args) {
+        // Opening a session
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        // Query to get all employees
+        String str = "from Employee";  // HQL query to fetch all employees
+        Query<Employee> query = session.createQuery(str, Employee.class);
+        
+        List<Employee> emplist = query.list();  // Execute the query and get the list of employees
+
+        System.out.println("\nList of Employees:");
+        for (Employee emp : emplist) {
+            // Print each employee's details
+            System.out.println("ID: " + emp.getId() + ", First Name: " + emp.getFirstName() + 
+                               ", Last Name: " + emp.getLastName() + ", Salary: " + emp.getSalary());
+        }
+
+        // Get employee by ID (ID = 4 in this example)
+        int eId = 4;
+        str = "from Employee where id=:eId";  // Query to get employee by ID
+        Query<Employee> queryById = session.createQuery(str, Employee.class);
+        queryById.setParameter("eId", eId);  // Setting the ID parameter for the query
+        
+        Employee e1 = queryById.uniqueResult();  // Execute the query and get the unique result
+        System.out.println("ID: " + e1.getId() + ", First Name: " + e1.getFirstName() + 
+                ", Last Name: " + e1.getLastName() + ", Salary: " + e1.getSalary());
+
+//        // Get employee by both ID and salary
+//        int eId2 = 5;
+//        double salary = 90000;  // Example salary value
+//        str = "from Employee where id=:eId and salary=:salary";  // Query to get employee by ID and salary
+//        Query<Employee> queryByIdAndSalary = session.createQuery(str, Employee.class);
+//        queryByIdAndSalary.setParameter("eId", eId2);  // Setting the ID parameter
+//        queryByIdAndSalary.setParameter("salary", salary);  // Setting the salary parameter
+//
+//        Employee e2 = queryByIdAndSalary.uniqueResult();  // Execute the query and get the unique result
+//       System.out.println("ID: " + e1.getId() + ", First Name: " + e1.getFirstName() + 
+//               ", Last Name: " + e1.getLastName() + ", Salary: " + e1.getSalary());
+
+        
+        //get lastname from employee
+        str="select lastName from Employee";
+        Query<String> query3=session.createQuery(str,String.class);
+        
+        List<Employee> lastNames = query.list();  // Execute the query and get the list of last names
+
+        System.out.println("\nList of Employee Last Names:");
+        for (Employee emp : emplist) {
+            // Print each employee's last name
+            System.out.println(e1.getLastName());
+        }
+        
+//        Closing the session
+        session.close();
+    }
+}
+

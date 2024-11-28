@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author aaabhije
+ *
+ */
+module TestDesignPattern {
+}

@@ -1,0 +1,58 @@
+package com.cg.emp;
+
+import java.util.Scanner;
+
+public class UseEmployeeHQLDao {
+public static void main(String[] args) {
+	UseEmployeeHQLDao u=new UseEmployeeHQLDao();
+	UseHQL uq=new UseHQL();
+	Scanner scanner = new Scanner(System.in);
+    int choice;
+ 
+    do {
+        System.out.println("\nEmployee Management Menu");
+        System.out.println("1. Get All Records");
+        System.out.println("2. Get Employee By ID");
+        System.out.println("3. Get Employee By ID and Salary");
+        System.out.println("4. Get LastName column");
+        System.out.println("5. Get FirstLastName column");
+        System.out.println("6. Exit");
+        System.out.print("Enter your choice: ");
+        choice = scanner.nextInt();
+        scanner.nextLine();  // Consume the newline character
+        switch (choice) {
+            case 1:
+                // Input employee details from the user
+                uq.getAllRecords();
+                break;
+ 
+            case 2:
+                // Get employee ID from the user
+               uq.getEmployeeById();
+                break;
+            case 3:
+          	  uq.getEmployeeByIdSalary();;
+          	  break;
+            case 4:
+                // Get employee ID from the user and update the employee
+               uq.getLastNameColumn();
+                break;
+ 
+            case 5:
+                // Get employee ID from the user and delete the employee
+                uq.getFirstLastNameColumn();
+                break;
+            case 6:
+                System.out.println("Exiting the program...");
+                break;
+ 
+            default:
+                System.out.println("Invalid choice, please try again.");
+                break;
+        }
+    } while (choice != 6
+  		  );
+    scanner.close();
+ 
+}	
+}

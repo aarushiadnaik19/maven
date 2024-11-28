@@ -1,0 +1,30 @@
+package com.cg.emp;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class UseCriteriaQuery {
+
+	public static void main(String[] args) {
+		 EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAUnit"); 
+	        EntityManager em = emf.createEntityManager();
+	        
+		EmployeeCriteriaQuery ecq=new EmployeeCriteriaQuery(em);
+		List<Employee> rec=ecq.listAllEmployeesUsingCriteriaQuery();
+		
+		for(Employee emp1:rec) {
+		System.out.println(emp1);
+		}
+		List<Employee> rec1=ecq.findEmployeeByName("aarushi");
+		
+		for(Employee emp2:rec1) {
+		System.out.println(emp2);
+		}
+		
+	}
+	
+
+}

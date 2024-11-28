@@ -1,0 +1,8 @@
+package TestDesign_creation_facade;
+
+public class Circle {
+	 @Override
+	    public void draw() {
+	        System.out.println("Drawing a Circle");
+	    }
+}

@@ -1,0 +1,19 @@
+package com.cg.client;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import com.cg.entity.Person;
+
+public class SaveClientData {
+
+	public static void main(String[] args) {
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("JPUnit");
+		EntityManager em= emf.createEntityManager();
+			Person person=new Person("aarushi","female");
+		
+
+	}
+
+}
